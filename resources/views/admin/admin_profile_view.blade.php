@@ -1,6 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -95,7 +97,7 @@
                                 <h6 class="mb-0">Profile Image</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="file" name="image" class="form-control"/>
+                                <input type="file" name="image" class="form-control" id="profileImage"/>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -103,7 +105,7 @@
                                 <h6 class="mb-0"></h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <img src="{{ (!empty($profileData->image)) ? url('uploads/admin_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
+                                <img id="showImage" src="{{ (!empty($profileData->image)) ? url('uploads/admin_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="80">
                             </div>
                         </div>
 
@@ -120,5 +122,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#profileImage').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
 
 @endsection
