@@ -21,10 +21,15 @@ Route::middleware(['auth', 'roles:user'])->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Admin Route Declare here
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 });
 
+// Instructor Route Declare here
 Route::middleware(['auth', 'roles:instructor'])->group(function(){
 
     Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
