@@ -55,7 +55,10 @@
                                     <h6 class="mb-0">Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="name" class="form-control" value="{{ $profileData->name }}" placeholder="Name"/>
+                                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $profileData->name }}" placeholder="Name"/>
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -73,7 +76,10 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="email" class="form-control" value="{{ $profileData->email }}" placeholder="Email"/>
+                                    <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ $profileData->email }}" placeholder="Email"/>
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -82,7 +88,10 @@
                                     <h6 class="mb-0">Phone</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="phone" class="form-control" value="{{ $profileData->phone }}" placeholder="Phone"/>
+                                    <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ $profileData->phone }}" placeholder="Phone"/>
+                                    @error('phone')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
