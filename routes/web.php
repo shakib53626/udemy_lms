@@ -1,13 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Frontend\FrontendHomeController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [FrontendHomeController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
