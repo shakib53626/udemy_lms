@@ -20,7 +20,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 	<link href="{{ asset('backend/assets/css/app.css') }}" rel="stylesheet">
 	<link href="{{ asset('backend/assets/css/icons.css') }}" rel="stylesheet">
-	<title>Admin Dashboard</title>
+	<title>Instructor Login</title>
 </head>
 
 <body class="">
@@ -48,7 +48,7 @@
 										<img src="{{ asset('backend/assets/images/logo-icon.png') }}" width="60" alt="">
 									</div>
 									<div class="text-center mb-4">
-										<h5 class="">Admin Login</h5>
+										<h5 class="">Instructor Login</h5>
 										<p class="mb-0">Please log in to your account</p>
 									</div>
 									<div class="form-body">
@@ -58,7 +58,7 @@
 
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email</label>
-												<input id="email" type="email" name="email" value="admin@gmail.com" class="form-control @error('email') is-invalid @enderror" id="inputEmailAddress" placeholder="jhon@example.com">
+												<input id="email" type="email" name="email" value="instructor@gmail.com" class="form-control @error('email') is-invalid @enderror" id="inputEmailAddress" placeholder="jhon@example.com">
                                                 @error('email')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
