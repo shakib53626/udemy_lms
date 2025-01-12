@@ -26,10 +26,12 @@
         </div><!-- end media-body -->
     </div><!-- end media -->
 </div><!-- end breadcrumb-content -->
+
 <div class="section-block mb-5"></div>
 <div class="dashboard-heading mb-5">
     <h3 class="fs-22 font-weight-semi-bold">Dashboard</h3>
 </div>
+
 <div class="row">
     <div class="col-lg-4 responsive-column-half">
         <div class="card card-item dashboard-info-card">

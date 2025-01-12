@@ -170,14 +170,14 @@
                                             <li>
                                                 <div class="shop-cart-btn">
                                                     <div class="avatar-xs">
-                                                        <img class="rounded-full img-fluid" src="{{ (!empty($profileData->image)) ? url('uploads/admin_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Avatar image">
+                                                        <img class="rounded-full img-fluid" src="{{ (!empty($profileData->image)) ? url('uploads/user_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Avatar image">
                                                     </div>
                                                     <span class="dot-status bg-1"></span>
                                                 </div>
                                                 <ul class="cart-dropdown-menu after-none p-0 notification-dropdown-menu">
                                                     <li class="menu-heading-block d-flex align-items-center">
                                                         <a href="teacher-detail.html" class="avatar-sm flex-shrink-0 d-block">
-                                                            <img class="rounded-full img-fluid" src="{{ (!empty($profileData->image)) ? url('uploads/admin_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Avatar image">
+                                                            <img class="rounded-full img-fluid" src="{{ (!empty($profileData->image)) ? url('uploads/user_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Avatar image">
                                                         </a>
                                                         <div class="ml-2">
                                                             <h4><a href="teacher-detail.html" class="text-black">{{ $profileData->name }}</a></h4>
@@ -267,7 +267,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="index.html">
+                                                                <a href="{{ route('user.logout') }}">
                                                                     <i class="la la-power-off mr-1"></i> Logout
                                                                 </a>
                                                             </li>
