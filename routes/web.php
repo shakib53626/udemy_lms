@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendHomeController::class, 'index'])->name('index');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('frontend.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'roles:user'])->group(function () {
