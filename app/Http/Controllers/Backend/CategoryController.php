@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -33,10 +35,11 @@ class CategoryController extends Controller
 
             if($request->file('image')){
                 $file = $request->file('image');
-                @unlink(public_path('uploads/categories/'.$category->image));
-                $filename = date('YmdHi').$file->getClientOriginalName();
-                $file->move(public_path('uploads/categories'), $filename);
-                $category['image'] = $filename;
+                @unlink(public_path($category->image));
+                $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $manager = new ImageManager(new Driver());
+                $manager->read($file)->resize(370,246)->save('uploads/categories/'.$name_gen);
+                $category['image'] = 'uploads/categories/'.$name_gen;
             }
 
             $category->save();

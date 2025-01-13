@@ -46,7 +46,7 @@
                                 <td>{{ $key+1 }}</td>
 
                                 <td>
-                                    <img src="{{ (!empty($item->image)) ? url('uploads/categories/'.$item->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" width="30" width="30" alt="">
+                                    <img src="{{ (!empty($item->image)) ? url($item->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" width="30" width="30" alt="">
                                 </td>
 
                                 <td>{{ $item->name }}</td>
