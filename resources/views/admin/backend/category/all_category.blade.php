@@ -51,10 +51,13 @@
 
                                 <td>{{ $item->name }}</td>
 
-                                <td>{{ $item->status }}</td>
+                                <td>
+                                    <span style="padding: 0 10px;" class="btn btn-sm @if ($item->status == 'active') btn-outline-success @else btn-outline-danger @endif">{{ $item->status }}</span>
+                                </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-outline-success btn-sm">
+
+                                    <button type="button" class="btn btn-outline-success btn-sm btn-edit-category" data-item='@json($item)' data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">
                                         <i class="bx bx-edit me-0"></i>
                                     </button>
 
@@ -71,6 +74,119 @@
             </div>
         </div>
     </div>
+
+    <div class="col">
+
+        <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content ps-4 pe-4">
+                    <form id="myForm" method="POST" action="{{ url('/update/category/' . $item->id) }}" enctype="multipart/form-data" class="row g-3">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group col-md-12 mb-3">
+                                <label for="input1" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="input1" name="name" placeholder="Category Name">
+                            </div>
+
+                            <div class="form-group col-md-12 mb-3">
+                                <label for="input2" class="form-label">Category Status</label>
+                                <select id="input2" name="status" class="form-select">
+                                    <option value="" selected>Choose Status...</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label for="input3" class="form-label">Image</label>
+                                <input type="file" name="image" class="form-control" id="input3">
+                                <img id="showImage" src="" class="p-1" width="80">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<script type="text/javascript">
+    $('.btn-edit-category').on('click', function() {
+    var item = $(this).data('item');
+    $('#input1').val(item.name);
+    $('#input2').val(item.status);
+
+    if (item.image) {
+        $('#showImage').attr('src', "{{ url('/') }}/" + item.image);
+    } else {
+        $('#showImage').attr('src', 'https://dummyimage.com/80x80/f3f3f3/4f4f4f');
+    }
+
+    // Update the form action URL dynamically
+    $('#myForm').attr('action', "/update/category/" + item.id);
+});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required : true,
+                },
+                status: {
+                    required : true,
+                },
+
+            },
+            messages :{
+                name: {
+                    required : 'Please Enter Category Name',
+                },
+                status: {
+                    required : 'Please Select Category Status',
+                },
+
+
+            },
+            errorElement : 'span',
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#input3').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        });
+    });
+</script>
+
 
 @endsection
