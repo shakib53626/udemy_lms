@@ -35,7 +35,7 @@
                 </li>
 
                 <li>
-                    <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
+                    <a href="{{ route('add.category') }}"><i class='bx bx-radio-circle'></i>Add Category</a>
                 </li>
 
             </ul>
