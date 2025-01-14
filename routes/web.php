@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\FrontendHomeController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\InstructorController;
@@ -40,6 +41,14 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::post('/store/category', 'storeCategory')->name('store.category');
         Route::put('/update/category/{id}', 'updateCategory')->name('update.category');
         Route::get('/destroy/category/{id}', 'destroyCategory')->name('destroy.category');
+    });
+
+    Route::controller(SubCategoryController::class)->group(function(){
+        Route::get('/all/sub-category', 'allSubCategory')->name('all.sub_category');
+        Route::get('/add/sub-category', 'addSubCategory')->name('add.sub_category');
+        Route::post('/store/sub-category', 'storeSubCategory')->name('store.sub_category');
+        Route::put('/update/sub-category/{id}', 'updateSubCategory')->name('update.sub_category');
+        Route::get('/destroy/sub-category/{id}', 'destroySubCategory')->name('destroy.sub_category');
     });
 });
 
