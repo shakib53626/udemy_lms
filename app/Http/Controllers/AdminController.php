@@ -107,4 +107,8 @@ class AdminController extends Controller
 
         return redirect('/admin/login');
     }
+
+    public function becomeInstructor(){
+        return view('frontend.instructor.register_instructor');
+    }
 }

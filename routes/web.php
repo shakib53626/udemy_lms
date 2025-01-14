@@ -26,6 +26,7 @@ require __DIR__.'/auth.php';
 
 // Admin Route Declare here
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::get('/become/instructor', [AdminController::class, 'becomeInstructor'])->name('become.instructor');
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
