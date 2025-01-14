@@ -85,4 +85,20 @@ class CategoryController extends Controller
             throw $th;
         }
     }
+
+    public function destroyCategory($id)
+    {
+        $category = Category::find($id);
+        $img      = $category->image;
+        unlink($img);
+
+        $category->delete();
+
+        $notification = array(
+            'message' => 'Category Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
 }

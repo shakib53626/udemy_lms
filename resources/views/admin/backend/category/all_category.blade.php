@@ -61,9 +61,9 @@
                                         <i class="bx bx-edit me-0"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-danger btn-sm">
+                                    <a href="{{ route('destroy.category', $item->id) }}" id="delete" type="button" class="btn btn-outline-danger btn-sm">
                                         <i class="bx bx-trash me-0"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
 
@@ -80,7 +80,7 @@
         <div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content ps-4 pe-4">
-                    <form id="myForm" method="POST" action="{{ url('/update/category/' . $item->id) }}" enctype="multipart/form-data" class="row g-3">
+                    <form id="myForm" method="POST" action="" enctype="multipart/form-data" class="row g-3">
                         @csrf
                         @method('PUT')
 
