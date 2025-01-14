@@ -52,7 +52,7 @@
 
                                 <td>{{ $item->name }}</td>
 
-                                <td>{{ $item->category_id }}</td>
+                                <td>{{ $item["category"]["name"] }}</td>
 
                                 <td>
                                     <span style="padding: 0 10px;" class="btn btn-sm @if ($item->status == 'active') btn-outline-success @else btn-outline-danger @endif">{{ $item->status }}</span>
@@ -60,9 +60,9 @@
 
                                 <td>
 
-                                    <button type="button" class="btn btn-outline-success btn-sm btn-edit-category" data-item='@json($item)' data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">
+                                    <a href="{{ route('edit.sub_category', $item->id) }}" type="button" class="btn btn-outline-success btn-sm" >
                                         <i class="bx bx-edit me-0"></i>
-                                    </button>
+                                    </a>
 
                                     <a href="{{ route('destroy.sub_category', $item->id) }}" id="delete" type="button" class="btn btn-outline-danger btn-sm">
                                         <i class="bx bx-trash me-0"></i>

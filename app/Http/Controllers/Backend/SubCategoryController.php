@@ -6,6 +6,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SubCategoryRequest;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use App\Models\SubCategory;
 use Exception;
@@ -55,37 +56,46 @@ class SubCategoryController extends Controller
         }
     }
 
-    // public function updateCategory(CategoryRequest $request, $id)
-    // {
-    //     try {
+    public function editSubCategory($id){
 
-    //         $category = SubCategory::find($id);
+        $subCategory = SubCategory::find($id);
+        $categories  = Category::get();
 
-    //         $category->name    = $request->name;
-    //         $category->slug    = Str::slug($request->name);
-    //         $category->status  = $request->status;
+        return view('admin.backend.sub_category.edit_sub_category', compact('subCategory', 'categories'));
+    }
 
-    //         if($request->hasFile('image')){
-    //             $file = $request->file('image');
-    //             @unlink(public_path($category->image));
-    //             $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-    //             $manager = new ImageManager(new Driver());
-    //             $manager->read($file)->resize(370,246)->save('uploads/categories/'.$name_gen);
-    //             $category['image'] = 'uploads/categories/'.$name_gen;
-    //         }
+    public function updateSubCategory(SubCategoryRequest $request, $id)
+    {
+        try {
 
-    //         $category->save();
+            $subCategory = SubCategory::find($id);
 
-    //         $notification = array(
-    //             'message' => 'Category Updated Successfully',
-    //             'alert-type' => 'success'
-    //         );
+            $subCategory->name        = $request->name;
+            $subCategory->slug        = Str::slug($request->name);
+            $subCategory->category_id = $request->category_id;
+            $subCategory->status      = $request->status;
 
-    //         return redirect()->back()->with($notification);
-    //     } catch (Exception $th) {
-    //         throw $th;
-    //     }
-    // }
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                @unlink(public_path($subCategory->image));
+                $name_gen = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
+                $manager = new ImageManager(new Driver());
+                $manager->read($file)->resize(370,246)->save('uploads/sub_categories/'.$name_gen);
+                $subCategory['image'] = 'uploads/sub_categories/'.$name_gen;
+            }
+
+            $subCategory->save();
+
+            $notification = array(
+                'message' => 'Sub Category Updated Successfully',
+                'alert-type' => 'success'
+            );
+
+            return redirect('/all/sub-category')->with($notification);
+        } catch (Exception $th) {
+            throw $th;
+        }
+    }
 
     public function destroySubCategory($id)
     {

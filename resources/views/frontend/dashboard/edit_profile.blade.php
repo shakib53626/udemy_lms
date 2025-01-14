@@ -4,7 +4,7 @@
 <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
     <div class="media media-card align-items-center">
         <div class="media-img media--img media-img-md rounded-full">
-            <img class="rounded-full" src="{{ (!empty($profileData->image)) ? url('uploads/user_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}" alt="Student thumbnail image">
+            <img class="rounded-full" src="{{ (!empty($profileData->image)) ? url('uploads/user_images/'.$profileData->image) : 'https://dummyimage.com/450x450/f3f3f3/4f4f4f' }}">
         </div>
         <div class="media-body">
             <h2 class="section__title fs-30">Hello, {{ $profileData->name }}</h2>

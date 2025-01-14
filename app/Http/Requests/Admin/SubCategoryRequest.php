@@ -21,11 +21,19 @@ class SubCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+
+        $imgValue = '';
+        if($this->id){
+            $imgValue = ["nullable"];
+        }else{
+            $imgValue = ["required"];
+        }
+
         return [
             "name"        => ["required"],
             "category_id" => ["required"],
             "status"      => ["required"],
-            "image"       => ["required"]
+            "image"       => $imgValue
         ];
     }
 }
