@@ -87,19 +87,19 @@ class SubCategoryController extends Controller
     //     }
     // }
 
-    // public function destroyCategory($id)
-    // {
-    //     $category = SubCategory::find($id);
-    //     $img      = $category->image;
-    //     unlink($img);
+    public function destroySubCategory($id)
+    {
+        $subCategory = SubCategory::find($id);
+        $img      = $subCategory->image;
+        unlink($img);
 
-    //     $category->delete();
+        $subCategory->delete();
 
-    //     $notification = array(
-    //         'message' => 'Category Deleted Successfully',
-    //         'alert-type' => 'success'
-    //     );
+        $notification = array(
+            'message' => 'Sub Category Deleted Successfully',
+            'alert-type' => 'success'
+        );
 
-    //     return redirect()->back()->with($notification);
-    // }
+        return redirect()->back()->with($notification);
+    }
 }
