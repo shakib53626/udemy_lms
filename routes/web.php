@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AllUserController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\FrontendHomeController;
@@ -25,8 +26,10 @@ Route::middleware(['auth', 'roles:user'])->group(function () {
 require __DIR__.'/auth.php';
 
 // Admin Route Declare here
+
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 Route::get('/become/instructor', [AdminController::class, 'becomeInstructor'])->name('become.instructor');
+Route::post('/register/instructor', [AdminController::class, 'registerInstructor'])->name('register.instructor');
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
@@ -52,9 +55,15 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
         Route::put('/update/sub-category/{id}', 'updateSubCategory')->name('update.sub_category');
         Route::get('/destroy/sub-category/{id}', 'destroySubCategory')->name('destroy.sub_category');
     });
+
+    Route::controller(AllUserController::class)->group(function(){
+        Route::get('/all/instructor', 'allInstructor')->name('all.instructor');
+        Route::post('/update/user/status', 'updateUserStatus')->name('update.user.status');
+    });
 });
 
 // Instructor Route Declare here
+
 Route::get('/instructor/login', [InstructorController::class, 'InstructorLogin'])->name('instructor.login');
 
 Route::middleware(['auth', 'roles:instructor'])->group(function(){
