@@ -16,8 +16,6 @@ class AllUserController extends Controller
 
     public function updateUserStatus(Request $request){
 
-        info("called");
-
         $userId = $request->input('user_id');
         $isChecked = $request->input('is_checked', 0);
 
